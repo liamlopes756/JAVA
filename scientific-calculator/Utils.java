@@ -1,0 +1,59 @@
+/**
+ * Metodos utilitarios.
+ * 
+ * @author Kauã Bezerra, Liam Lopes, Raul Kolaric, Rodrigo Ward.
+ * @version 12/03/2026
+ */
+
+public class Utils {
+    /**
+     * Método validarOperando - verifica se a string de entrada eh numerica
+     *
+     * @param str string de entrada
+     * @return false se existir algum caracter diferente de numeros e
+     *         true se for somente numeros
+     */
+    public static boolean validarOperando(String str) {
+        if (str == null || str.length() == 0) {
+            return false;
+        }
+
+        boolean foundDecimal = false;
+        for (char c : str.toCharArray()) { // percorre a string
+            if (!Character.isDigit(c)) { // verifica se eh digito
+                if (c == '.' && !foundDecimal) { // verifica se existe um unico ponto
+                    foundDecimal = true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Método validarOperador - verifica se o operador eh valido
+     *
+     * @param op String contendo o operador
+     * @return false se for diferente de (+,-,x,/, !, sin, inv) e true caso
+     *         contrario
+     */
+    public static boolean validarOperador(String op) {
+
+        if (!(op.equals("+") || op.equals("-") || op.equals("x") || op.equals("/") || op.equals("!") || op.equals("sin")
+                || op.equals("inv") || op.equals("cos") || op.equals("tan")))
+            return false;
+        return true;
+    }
+
+    /**
+     * Método isUnary - verifica se o operador é unário (apenas um operando)
+     *
+     * @param op String contendo o operador
+     * @return true se for unário (!, sin, inv, cos, tan), false caso contrário
+     */
+    public static boolean isUnary(String op) {
+        return op.equals("!") || op.equals("sin") || op.equals("inv") || op.equals("cos") || op.equals("tan");
+    }
+
+}
